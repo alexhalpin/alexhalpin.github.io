@@ -14,12 +14,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const guide = document.getElementById("Guide");
 
   // Show Guide
-  setTimeout(() => {
+  function showGuide() {
     guide.style.color = "#0a0a0a";
-  }, 5000);
+  }
+  guideRevealTimer = setTimeout(showGuide, 5000);
 
   //Remove Guide
   function removeGuide() {
+    clearTimeout(guideRevealTimer);
     guide.style.color = "black";
     document.removeEventListener("click", removeGuide);
   }
