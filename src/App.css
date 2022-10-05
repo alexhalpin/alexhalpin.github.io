@@ -14,14 +14,14 @@
   color: white;
   font-size: 5vw;
   position: absolute;
-  right: 10vw;
-  top: 10vh;
+  right: 6vw;
+  top: 6vh;
 }
 
 #Links{
   position: absolute;
-  top: 25vh;
-  right: 10vw;
+  top: 20vh;
+  right: 6vw;
   height: 60vh;
   width: 1vw;
   /* border: 1px solid chartreuse; */
