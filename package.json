@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "add-domain": "echo \"alexhalp.in\" > ./docs/CNAME",
+    "build": "vite build && npm run add-domain",
     "preview": "vite preview"
   },
   "dependencies": {
