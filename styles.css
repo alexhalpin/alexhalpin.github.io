@@ -5,9 +5,20 @@
     width: 100vw;
     top: 0;
     left: 0;
+    color: white;
   
     box-sizing: border-box;
     font-family: 'Noto Sans Mono', monospace;
+    font-weight: 300;
+
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+
   }
 
   #Canvas {
@@ -17,7 +28,6 @@
   }
   
   #Banner{
-    color: white;
     font-size: 5vw;
     position: absolute;
     right: 6vw;
@@ -41,21 +51,36 @@
     font-size: 8vh;
     margin-bottom: 10px;
     cursor: pointer;
-    color: white;
     /* border: solid 1px white; */
     /* width: 100%; */
     /* height: 160px; */
     /* margin-bottom: 20px; */
   }
+
+  .Clickable:hover{
+    text-decoration: underline;
+  }
   
   a:link {
     text-decoration: none;
+    color: white;
   }
-  
-  a:hover {
-    text-decoration: underline;
+ 
+  a:visited{
+    color: white;
   }
-  
-  a:active {
-    text-decoration: underline;
+
+  #Reset{
+    position: absolute;
+    cursor: pointer;
+    /* border: solid white 1px; */
+    font-size: 5vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 5vh;
+    width: 5vh;
+    bottom: 3vh;
+    left: 3vh;
   }
