@@ -34,9 +34,25 @@
     top: 6vh;
   }
   
+#Guide{
+  font-size: 5vh;
+  display: flex;
+  font-weight: 400;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  margin-top: 50vh;
+  margin-bottom: 50vh;
+    /* border: 1px solid white; */
+    color: black;
+    /* color: #0a0a0a; */
+height: 0;
+transition: 1s;
+}
+
   #Links{
     position: absolute;
-    top: 20vh;
+    top: 25vh;
     right: 6vw;
     height: 60vh;
     width: 1vw;
@@ -75,7 +91,7 @@
     cursor: pointer;
     /* border: solid white 1px; */
     font-size: 5vh;
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
