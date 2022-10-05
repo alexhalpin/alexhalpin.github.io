@@ -1,31 +1,37 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Canvas Init
   /** @type {HTMLCanvasElement} */
   const canvas = document.getElementById("Canvas");
   /** @type {CanvasRenderingContext2D} */
   const ctx = canvas.getContext("2d");
   canvas.height = window.innerHeight;
   canvas.width = window.innerWidth;
-
   ctx.strokeStyle = "white";
   ctx.lineWidth = 5;
   ctx.lineCap = "round";
+
+  function resizeCanvas() {
+    tmp = ctx.getImageData(0, 0, canvas.width, canvas.height);
+    canvas.height = window.innerHeight;
+    canvas.width = window.innerWidth;
+    ctx.strokeStyle = "white";
+    ctx.lineWidth = 5;
+    ctx.lineCap = "round";
+    ctx.putImageData(tmp, 0, 0);
+  }
 
   const guide = document.getElementById("Guide");
 
   // Show Guide
   function showGuide() {
-    guide.style.color = "#0a0a0a";
+    guide.style.color = "rgb(74, 74, 74)";
   }
-  guideRevealTimer = setTimeout(showGuide, 5000);
+  guideRevealTimer = setTimeout(showGuide, 3000);
 
   //Remove Guide
   function removeGuide() {
     clearTimeout(guideRevealTimer);
     guide.style.color = "black";
-    document.removeEventListener("click", removeGuide);
   }
-  document.addEventListener("click", removeGuide);
 
   // Prevent on Clickable click
   document.querySelectorAll(".Clickable").forEach((element) => {
@@ -38,14 +44,12 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Resize Canvas
-  document.addEventListener("resize", () => {
-    canvas.height = window.innerHeight;
-    canvas.width = window.innerWidth;
-  });
+  window.addEventListener("resize", resizeCanvas);
 
   // Reset Button
   const resetButton = document.getElementById("Reset");
   resetButton.addEventListener("click", () => {
+    guideRevealTimer = setTimeout(showGuide, 5000);
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     resetButton.style.display = "none";
   });
@@ -57,6 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function startStroke(event) {
+    removeGuide();
     ctx.beginPath();
     ctx.moveTo(event.clientX, event.clientY);
     ctx.lineTo(event.clientX, event.clientY);
