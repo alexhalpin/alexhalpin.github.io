@@ -40,7 +40,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function startStroke(event) {
-    if (hoveringButton) return;
     ctx.beginPath();
     ctx.moveTo(event.clientX, event.clientY);
     ctx.lineTo(event.clientX, event.clientY);
