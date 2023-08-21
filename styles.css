@@ -21,12 +21,9 @@
 
 
 #container {
-  /* background-color: blue; */
   position: absolute;
   top: 0;
   left: 0;
-  /* height: 100vh;
-  width: 100vw; */
   bottom: 0;
   right: 0;
 
@@ -39,8 +36,6 @@
 }
 
 #idcard {
-  /* display: none; */
-
   margin: 20px;
   border-radius: 2vh;
 
@@ -48,21 +43,15 @@
   flex-direction: row;
   align-items: center;
 
- background-color: rgba(255, 255, 255, .15);  
- backdrop-filter: blur(6px);
- -webkit-backdrop-filter: blur(6px);
-
- background: rgba(255, 255, 255, 0.2);
-border-radius: 16px;
-box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-backdrop-filter: blur(5px);
--webkit-backdrop-filter: blur(5px);
-border: 1px solid rgba(255, 255, 255, 0.3);
-
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 #headshot {
-  /* background-color: aqua; */
   height: 80px;
   width: 80px;
   margin: 20px;
@@ -72,7 +61,7 @@ border: 1px solid rgba(255, 255, 255, 0.3);
   align-items: center;
   justify-content: center;
 
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.305);
 
   overflow: hidden;
   border-radius: 10%;
@@ -83,7 +72,6 @@ border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 #nameandicons {
-  /* background-color: red; */
   height: 0%;
   margin-right: 20px;
   display: flex;
@@ -92,31 +80,19 @@ border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 #name {
-  /* background-color: cornflowerblue; */
-
   font-family: 'Roboto', sans-serif;
   font-weight: 700;
-  /* color: #363636; */
   color: white;
 
   font-size: 30px;
-  /* width: max(25vw, 140px); */
 
-  /* height: 7%; */
   margin-top: -5px;
   margin-bottom: 9px;
-
-  /* display: flex;
-  align-items: center;
-  justify-content: center; */
 
   text-align: center;
 }
 
 #icons {
-  /* background-color: green; */
-  height: 5vh;
-
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -124,10 +100,9 @@ border: 1px solid rgba(255, 255, 255, 0.3);
 }
 
 .icon {
-  /* background-color: red; */
-
-  height: 4vh;
-  width: 4vh;
+  height: 30px;
+  width: 30px;
+  margin: auto;
 
   display: flex;
   align-items: center;
@@ -136,20 +111,13 @@ border: 1px solid rgba(255, 255, 255, 0.3);
   border-radius: 20%;
 
   background-color: #363636;
-  background-color: #0f8bff;
+  background-color: #3e77ad;
 
   transition: transform 100ms ease-in-out;
 }
 
 .icon:hover{
-  
   transform: scale(1.1);
-}
-
-.iconspacer {
-  height: 100%;
-  width: 3vw;
-  max-width: 50px;
 }
 
 .icon a {

@@ -63,7 +63,7 @@ function setStreamSize(width, height) {
 
 function setNameSize(width, height) {
   nameElement = document.getElementById("name");
-  nameElement.style.fontSize = `${0.035 * height}px`;
+  //   nameElement.style.fontSize = `${0.035 * height}px`;
 }
 
 function updateDims(width, height) {
