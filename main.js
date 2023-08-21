@@ -1,78 +1,77 @@
-document.addEventListener("DOMContentLoaded", () => {
-  /** @type {HTMLCanvasElement} */
-  const canvas = document.getElementById("Canvas");
-  /** @type {CanvasRenderingContext2D} */
-  const ctx = canvas.getContext("2d");
-  canvas.height = window.innerHeight;
-  canvas.width = window.innerWidth;
-  ctx.strokeStyle = "white";
-  ctx.lineWidth = 5;
-  ctx.lineCap = "round";
+var player;
+window.addEventListener("load", (event) => {
+  let width = event.currentTarget.innerWidth;
+  let height = event.currentTarget.innerHeight;
 
-  function resizeCanvas() {
-    tmp = ctx.getImageData(0, 0, canvas.width, canvas.height);
-    canvas.height = window.innerHeight;
-    canvas.width = window.innerWidth;
-    ctx.strokeStyle = "white";
-    ctx.lineWidth = 5;
-    ctx.lineCap = "round";
-    ctx.putImageData(tmp, 0, 0);
-  }
-
-  const guide = document.getElementById("Guide");
-
-  // Show Guide
-  function showGuide() {
-    guide.style.color = "rgb(74, 74, 74)";
-  }
-  guideRevealTimer = setTimeout(showGuide, 3000);
-
-  //Remove Guide
-  function removeGuide() {
-    clearTimeout(guideRevealTimer);
-    guide.style.color = "black";
-  }
-
-  // Prevent on Clickable click
-  document.querySelectorAll(".Clickable").forEach((element) => {
-    element.addEventListener("mouseover", () => {
-      document.removeEventListener("mousedown", startStroke);
-    });
-    element.addEventListener("mouseleave", () => {
-      document.addEventListener("mousedown", startStroke);
-    });
-  });
-
-  // Resize Canvas
-  window.addEventListener("resize", resizeCanvas);
-
-  // Reset Button
-  const resetButton = document.getElementById("Reset");
-  resetButton.addEventListener("click", () => {
-    guideRevealTimer = setTimeout(showGuide, 5000);
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    resetButton.style.display = "none";
-  });
-
-  // Drawing functions
-  function drawStroke(event) {
-    ctx.lineTo(event.clientX, event.clientY);
-    ctx.stroke();
-  }
-
-  function startStroke(event) {
-    removeGuide();
-    ctx.beginPath();
-    ctx.moveTo(event.clientX, event.clientY);
-    ctx.lineTo(event.clientX, event.clientY);
-    ctx.stroke();
-    resetButton.style.display = "flex";
-    document.addEventListener("mousemove", drawStroke);
-  }
-
-  // Drawing Event Listeners
-  document.addEventListener("mousedown", startStroke);
-  document.addEventListener("mouseup", () => {
-    document.removeEventListener("mousemove", drawStroke);
-  });
+  player = videojs("surfcam");
+  updateDims(width, height);
 });
+
+window.addEventListener("resize", (event) => {
+  let width = event.target.innerWidth;
+  let height = event.target.innerHeight;
+  updateDims(width, height);
+});
+
+window.addEventListener("click", (event) => {
+  player.play();
+});
+
+function setStreamSize(width, height) {
+  if (player == undefined) {
+    return;
+  }
+  surfcam = document.getElementById("surfcam");
+  //   console.log(width / height > 16 / 9);
+
+  var top;
+  var left;
+
+  // portrait
+  if (width / height < 16 / 9) {
+    console.log("portrait");
+    top = 0;
+    let streamWidth = (height * 16) / 9;
+    left = 0.5 * (width - streamWidth);
+    // left = 0;
+
+    left = Math.ceil(left);
+    streamWidth = Math.ceil(streamWidth);
+
+    surfcam.style.top = `${top}px`;
+    surfcam.style.left = `${left}px`;
+    player.width(`${streamWidth}px`);
+    player.height(`${height}px`);
+  }
+
+  // landscape
+  else {
+    console.log("landscape");
+    left = 0;
+    let streamHeight = (width * 9) / 16;
+    top = (1 / 2) * (height - streamHeight);
+
+    top = Math.ceil(top);
+    streamHeight = Math.ceil(streamHeight);
+
+    player.width(`${width}px`);
+    player.height(`${streamHeight}px`);
+    surfcam.style.top = `${top}px`;
+    surfcam.style.left = `${left}px`;
+  }
+}
+
+function setNameSize(width, height) {
+  nameElement = document.getElementById("name");
+  nameElement.style.fontSize = `${0.035 * height}px`;
+}
+
+function updateDims(width, height) {
+  setStreamSize(width, height);
+  setNameSize(width, height);
+}
+
+// function debug(bruh) {
+//   debugElement = document.getElementById("debug");
+//   debugElement.innerText = bruh;
+// }
