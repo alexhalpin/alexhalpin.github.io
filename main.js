@@ -1,5 +1,7 @@
 var player;
 window.addEventListener("load", (event) => {
+  console.log("hi :)");
+
   let width = event.currentTarget.innerWidth;
   let height = event.currentTarget.innerHeight;
 
@@ -29,7 +31,7 @@ function setStreamSize(width, height) {
 
   // portrait
   if (width / height < 16 / 9) {
-    console.log("portrait");
+    // console.log("portrait");
     top = 0;
     let streamWidth = (height * 16) / 9;
     left = 0.5 * (width - streamWidth);
@@ -46,7 +48,7 @@ function setStreamSize(width, height) {
 
   // landscape
   else {
-    console.log("landscape");
+    // console.log("landscape");
     left = 0;
     let streamHeight = (width * 9) / 16;
     top = (1 / 2) * (height - streamHeight);
