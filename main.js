@@ -24,6 +24,7 @@ function setStreamSize(width, height) {
     return;
   }
   surfcam = document.getElementById("surfcam");
+  streamTag = document.getElementById("streamTag");
   //   console.log(width / height > 16 / 9);
 
   var top;
@@ -35,7 +36,6 @@ function setStreamSize(width, height) {
     top = 0;
     let streamWidth = (height * 16) / 9;
     left = 0.5 * (width - streamWidth);
-    // left = 0;
 
     left = Math.ceil(left);
     streamWidth = Math.ceil(streamWidth);
@@ -61,6 +61,12 @@ function setStreamSize(width, height) {
     surfcam.style.top = `${top}px`;
     surfcam.style.left = `${left}px`;
   }
+
+  if (width / height < 1) {
+    streamTag.style.right = "";
+  } else {
+    streamTag.style.right = "0px";
+  }
 }
 
 function setNameSize(width, height) {
@@ -73,7 +79,7 @@ function updateDims(width, height) {
   setNameSize(width, height);
 }
 
-// function debug(bruh) {
+// function debug(text) {
 //   debugElement = document.getElementById("debug");
-//   debugElement.innerText = bruh;
+//   debugElement.innerText = text;
 // }
