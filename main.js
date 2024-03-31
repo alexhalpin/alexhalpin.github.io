@@ -1,30 +1,49 @@
-var player;
-window.addEventListener("load", (event) => {
-  console.log("hi :)");
+import { streamLinks } from "./links.js";
 
-  let width = event.currentTarget.innerWidth;
-  let height = event.currentTarget.innerHeight;
+console.log("hi :)");
 
-  player = videojs("surfcam");
-  updateDims(width, height);
+var validStreamLink;
+
+// get a valid stream link
+for (const [site, links] of Object.entries(streamLinks)) {
+  if (validStreamLink != undefined) {
+    break;
+  }
+  for (const link of links) {
+    if (checkStreamLink(link)) {
+      validStreamLink = link;
+      console.log(`Using ${site} : ${link}`);
+      break;
+    }
+  }
+}
+
+let width = window.innerWidth;
+let height = window.innerHeight;
+
+var player = videojs("surfcam");
+player.src(validStreamLink);
+player.on("loadeddata", () => {
+  console.log("video loaded");
+
+  player.play();
+  showLiveTag();
 });
+
+updateStreamDims(width, height);
 
 window.addEventListener("resize", (event) => {
   let width = event.target.innerWidth;
   let height = event.target.innerHeight;
-  updateDims(width, height);
-});
-
-window.addEventListener("click", (event) => {
-  player.play();
+  updateStreamDims(width, height);
 });
 
 function setStreamSize(width, height) {
   if (player == undefined) {
     return;
   }
-  surfcam = document.getElementById("surfcam");
-  streamTag = document.getElementById("streamTag");
+  var surfcam = document.getElementById("surfcam");
+  var streamTag = document.getElementById("streamTag");
   //   console.log(width / height > 16 / 9);
 
   var top;
@@ -69,17 +88,21 @@ function setStreamSize(width, height) {
   }
 }
 
-function setNameSize(width, height) {
-  nameElement = document.getElementById("name");
-  //   nameElement.style.fontSize = `${0.035 * height}px`;
+function updateStreamDims(width, height) {
+  setStreamSize(width, height);
 }
 
-function updateDims(width, height) {
-  setStreamSize(width, height);
-  setNameSize(width, height);
+function showLiveTag() {
+  var liveIcon = document.querySelector("#liveIcon");
+  liveIcon.classList.remove("hidden");
 }
 
 // function debug(text) {
 //   debugElement = document.getElementById("debug");
 //   debugElement.innerText = text;
 // }
+
+async function checkStreamLink(streamLink) {
+  const resp = await fetch(streamLink, { method: "HEAD" });
+  return resp.ok;
+}

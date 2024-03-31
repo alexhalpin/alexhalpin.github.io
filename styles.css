@@ -9,6 +9,10 @@
   font-size: 30px;
 } */
 
+#liveIcon.hidden {
+  display: none;
+}
+
 #surfcam {
   /* display: none; */
   position: absolute;
