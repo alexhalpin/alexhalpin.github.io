@@ -51,7 +51,7 @@ export function setStreamSize(player, height, width) {
   }
 }
 
-export function getStreamLink() {
+export async function getStreamLink() {
   // get a valid stream link
   let validStreamLink;
   for (const [site, links] of Object.entries(streamLinks)) {
@@ -59,9 +59,9 @@ export function getStreamLink() {
       break;
     }
     for (const link of links) {
-      if (checkStreamLink(link)) {
+      if (await checkStreamLink(link)) {
         validStreamLink = link;
-        console.log(`Using ${site} : ${link}`);
+        console.log(`using ${site} : ${link}`);
         break;
       }
     }
