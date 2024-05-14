@@ -25,9 +25,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.9.1/math.min.js"></script>
 
 <body>
-    <video-js id=surfcam class="vjs-default-skin" autoplay muted playsinline> </video-js>
-    <img src="https://thesurfersview.com/wp-content/uploads/2021/02/manasquan-beach-cam-and-surf-report.jpg"
-        id="poster">
+    <div id="surfcamFrame" class="frame">
+        <video-js id=surfcam class="vjs-default-skin" autoplay muted playsinline> </video-js>
+    </div>
+    <div id="posterFrame" class="frame">
+        <img src="https://thesurfersview.com/wp-content/uploads/2021/02/manasquan-beach-cam-and-surf-report.jpg"
+            id="poster">
+    </div>
+
     <div id="container">
 
         <div id="streamTag">

@@ -1,9 +1,24 @@
-import { getStreamLink, initLiveUI, setStreamSize } from "./helpers.js";
+import {
+  getStreamLink,
+  initLiveUI,
+  setTagPosition,
+  setPlayerSize,
+} from "./helpers.js";
 
 console.log("🐸 who do you know here?");
 
+setTagPosition();
+window.addEventListener("resize", () => {
+  setTagPosition();
+});
+
 getStreamLink().then((link) => {
-  var player = videojs("surfcam");
+  if (link == null) {
+    console.error("no valid stream link found");
+    return;
+  }
+
+  let player = videojs("surfcam");
   player.src(link);
   player.on("loadeddata", () => {
     console.log("video loaded starting stream");
@@ -11,10 +26,8 @@ getStreamLink().then((link) => {
     initLiveUI();
   });
 
-  setStreamSize(player, window.innerHeight, window.innerWidth);
+  setPlayerSize(player);
   window.addEventListener("resize", () => {
-    let height = window.innerHeight;
-    let width = window.innerWidth;
-    setStreamSize(player, height, width);
+    setPlayerSize(player);
   });
 });
