@@ -61,6 +61,8 @@ export async function getStreamLink() {
       if (await checkStreamLink(link)) {
         console.log(`using ${site} : ${link}`);
         return link;
+      } else {
+        console.log(`stream unavailable... ${site} : ${link} `);
       }
     }
   }
@@ -68,8 +70,12 @@ export async function getStreamLink() {
 }
 
 async function checkStreamLink(streamLink) {
-  const resp = await fetch(streamLink, { method: "HEAD" });
-  return resp.ok;
+  try {
+    const resp = await fetch(streamLink, { method: "HEAD" });
+    return resp.ok;
+  } catch (error) {
+    return false;
+  }
 }
 
 export function initLiveUI() {
